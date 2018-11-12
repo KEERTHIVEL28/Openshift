@@ -1,0 +1,34 @@
+
+Create the application by specifying the source of the code:
+
+#oc new-app openshift/ruby-20-centos7~https://github.com/<your_github_username>/ruby-ex
+
+
+To set up a webhook for your application:
+
+View the triggers section of the BuildConfig to verify that a GitHub webhook trigger exists:
+
+#oc edit bc/ruby-ex
+
+You should see something similar to this:
+
+triggers
+- github:
+    secret: Q1tGY0i9f1ZFihQbX07S
+    type: GitHub
+    
+Run the following command to display the webhook URLs associated with your BuildConfig:
+
+$ oc describe bc ruby-ex
+Copy the GitHub webhook payload URL output by the above command.
+
+Navigate to your forked repository on GitHub, then click Settings.
+
+Click Webhooks & Services.
+
+Click Add webhook.
+
+Paste your webhook URL into the Payload URL field.
+
+Click Add webhook to save    
+    
